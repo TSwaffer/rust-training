@@ -7,8 +7,8 @@
 - For integers, consider the maximum possible value of the variable
 
 ### Integer data types
-Signed allows negative values
-Unisgned are only positive values
+- Signed allows negative values
+- Unisgned are only positive values
 
 | Length  | Signed | Unsigned |
 |-------- |--------|----------|
@@ -20,8 +20,8 @@ Unisgned are only positive values
 | arch    | isize  | usize    |
 
 ### Floating-point data types
-f32 - single precision
-f64 - double precision
+- `f32` - single precision
+- `f64` - double precision
 
 ```
 y: 32 = 10.1234567891234567890
@@ -31,3 +31,19 @@ y: 64 = 10.1234567891234567890
   -> 10.123456789123457
 ```
 
+### Casting
+Converting one data type to another:
+
+```
+let a: u8 = 10;
+let b: f32 = 3.0;
+let c: f32 = a as f32 / b;
+```
+
+Consider data loss when casting:
+```
+3 as f64 -> 3.0 // Okay
+3.9 as i32 -> 3 // Bad. Casting truncates, not round
+300 as u8 -> 44 // Bad. Max value of u8 is 255 so extra is rolled over
+-300 as u32 -> 4294966996 // Bad
+```
