@@ -127,15 +127,15 @@ value = !value;
 value = value & 0b1111_0111;
 -> value is 00000010
 
-// Bitewise OR
+// Bitwise OR
 value = value | 0b0100_0000;
  -> value is 01000010
 
- // Bitewise XOR (0 if both values are same, 1 if not)
+ // Bitwise XOR (0 if both values are same, 1 if not)
  value = value ^ 0b0101_0101;
 -> value is 00010111
 
-// Bitewise shift
+// Bitwise shift
 value = value << 4; // left
 -> value is 01110000
 
