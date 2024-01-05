@@ -32,6 +32,33 @@ y: 64 = 10.1234567891234567890
   -> 10.123456789123457
 ```
 
+### Booleans
+- 1 = `true`
+- 0 = `false`
+
+```
+let a = true;
+let b = false;
+
+println!("a is {a} and b is {b}");
+println!("NOT a is {} ", !a);
+println!("a AND b is {} ", a & b);
+println!("a OR b is {} ", a | b);
+println!("a XOR b is {} ", a ^ b);
+
+  a is true and b is false
+  NOT a is false 
+  a AND b is false 
+  a OR b is true 
+  a XOR b is true 
+```
+
+#### Short-circuiting logical operations
+More efficient 
+
+- false && [not evaluated] = false
+- true || [not evaluated] = true
+
 ### Casting
 Converting one data type to another:
 
@@ -49,7 +76,7 @@ Consider data loss when casting:
 -300 as u32 -> 4294966996 // Bad
 ```
 
-### Formatting print statements
+## Formatting print statements
 https://doc.rust-lang.org/std/fmt/index.html
 
 ```
@@ -81,7 +108,7 @@ println!("c is {0:08.3}\na is {1}\nonce again, c is {0}", c, a);
   -> once again, c is 3.3333333
 ```
 
-### Bitwise operations
+## Bitwise operations
 Commonly used for low level programming when manipulating bits on an individual basis.
 
 ```
