@@ -1,13 +1,8 @@
 fn main() {
-    let a = true;
-    let b = false;
-    let c = (a ^ b) | (a & b);
+  let mut stuff: (i32, f64, char) = (10, 3.14, 'x');
+  stuff.0 += 3;
+  let first_item = stuff.0;
 
-    println!("a is {a} and b is {b}");
-    println!("NOT a is {} ", !a);
-    println!("a AND b is {} ", a & b);
-    println!("a OR b is {} ", a | b);
-    println!("a XOR b is {} ", a ^ b);
-
-    println!("c is {c}");
+  let (a,b,c) = stuff;
+  println!("{}", b);
 }
