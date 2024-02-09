@@ -1,43 +1,27 @@
+use std::io;
+use rand::{self, Rng};
+
 fn main() {
-  let test1 = "We need more space.";
-  assert_eq!(trim_spaces(test1), "We need more space.");
-  
-  let test2 = String::from("   There's space in front.");
-  assert_eq!(trim_spaces(&test2), "There's space in front.");
-  
-  let test3 = String::from("There's space to the rear. ");
-  assert_eq!(trim_spaces(&test3[..]), "There's space to the rear.");   
-  
-  let test4 = "  We're surrounded by space!    ";
-  assert_eq!(trim_spaces(test4), "We're surrounded by space!");
-  
-  let test5 = "     ";
-  assert_eq!(trim_spaces(test5), "");
-  
-  let test6 = "";
-  assert_eq!(trim_spaces(test6), "");
-  
-  let test7 = " 🚀 ";
-  assert_eq!(trim_spaces(test7), "🚀");
-  println!("Tests passed!");
-}
+  let random_number: u16 = rand::thread_rng().gen_range(1..101);
 
-fn trim_spaces(s: &str) -> &str {
-  let bytes = s.as_bytes();
-  let mut start_index: (usize, bool) = (0, false);
-  let mut end_index: usize = 0;
+  let mut buffer: String = String::new();
+  println!("Enter a number:");
+  io::stdin().read_line(&mut buffer);
+  let mut number: u16 = buffer.trim().parse().unwrap();
 
-  for (index, &item) in bytes.iter().enumerate() {
-    if item != b' ' {
-      start_index.0 = if start_index.1 == false { index } else { start_index.0 };
-      start_index.1 = true;
-      end_index = index;
+  while number != random_number {
+    buffer = String::new();
+
+    if number < random_number {
+      println!("Too low!");
+    } else {
+      println!("Too high!");
     }
+
+    println!("Try again. Enter a number:");
+    io::stdin().read_line(&mut buffer);
+    number = buffer.trim().parse::<u16>().unwrap();
   }
 
-  if start_index.1 == false {
-    return "";
-  }
-  
-  &s[start_index.0..end_index + 1]
+  print!("You got it!!");
 }
