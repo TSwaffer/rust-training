@@ -1,27 +1,21 @@
-use std::io;
-use rand::{self, Rng};
+use std::env::args;
+use std::fs;
 
 fn main() {
-  let random_number: u16 = rand::thread_rng().gen_range(1..101);
-
-  let mut buffer: String = String::new();
-  println!("Enter a number:");
-  io::stdin().read_line(&mut buffer);
-  let mut number: u16 = buffer.trim().parse().unwrap();
-
-  while number != random_number {
-    buffer = String::new();
-
-    if number < random_number {
-      println!("Too low!");
-    } else {
-      println!("Too high!");
-    }
-
-    println!("Try again. Enter a number:");
-    io::stdin().read_line(&mut buffer);
-    number = buffer.trim().parse::<u16>().unwrap();
+  if args().len() <= 2 {
+    println!("Program requires at least 2 arguments - file path and name");
+    return;
   }
 
-  print!("You got it!!");
+  let file_path: String = args().nth(1).unwrap();
+  let name: String =  args().nth(2).unwrap();
+
+  let contents = fs::read_to_string(&file_path).unwrap();
+  let is_in_contents = contents.contains(&name);
+
+  if is_in_contents {
+    println!("Found {} in {}", name, file_path);
+  } else {
+    println!("This name doesn't exist in {}", file_path);
+  }
 }
