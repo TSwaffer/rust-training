@@ -1,21 +1,30 @@
-use std::env::args;
-use std::fs;
+struct Rectangle {
+  width: f64,
+  height: f64
+}
+
+impl Rectangle {
+  fn new(width: f64, height: f64) -> Rectangle {
+    Rectangle {
+      width,
+      height
+    }
+  }
+
+  fn get_area(&self) -> f64 {
+    self.width * self.height
+  }
+
+  fn scale(&mut self, amount: f64) {
+    self.height *= amount;
+    self.width *= amount;
+  }
+}
 
 fn main() {
-  if args().len() <= 2 {
-    println!("Program requires at least 2 arguments - file path and name");
-    return;
-  }
-
-  let file_path: String = args().nth(1).unwrap();
-  let name: String =  args().nth(2).unwrap();
-
-  let contents = fs::read_to_string(&file_path).unwrap();
-  let is_in_contents = contents.contains(&name);
-
-  if is_in_contents {
-    println!("Found {} in {}", name, file_path);
-  } else {
-    println!("This name doesn't exist in {}", file_path);
-  }
+  let mut rect = Rectangle::new(1.2, 3.4);
+  assert_eq!(rect.get_area(), 4.08);
+  rect.scale(0.5);
+  assert_eq!(rect.get_area(), 1.02);
+  println!("Tests passed");
 }
