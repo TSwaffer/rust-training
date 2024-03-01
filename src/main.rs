@@ -1,20 +1,21 @@
-use std::{boxed, mem, ops::{self, Add}};
+use std::fmt::{self};
 
-fn main() {
-  let one = Box::new(1);
-  let two = Box::new(2);
-  assert_eq!(*sum_boxes(one, two), 3);
-
-  let pi = Box::new(3.14159);
-  let e = Box::new(2.71828);
-  assert_eq!(*sum_boxes(pi, e), 5.85987);
-
-  println!("Tests passed");
+struct Satellite {
+  name: String,
+  velocity: f64 // miles per second
 }
 
-fn sum_boxes<T: std::ops::Add<Output = T>>(box1: Box<T>, box2: Box<T>) -> Box<T> {
-  let a = *box1;
-  let b = *box2;
-  let sum = a + b;
-  Box::new(sum)
+impl fmt::Display for Satellite {
+  fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+    write!(f, "called {}, and is moving at {} miles per second", self.name, self.velocity)
+  }
+}
+
+fn main() {
+  let hubble = Satellite{
+    name: String::from("Hubble telescope"),
+    velocity: 4.72
+  };
+
+  println!("hubble is {}", hubble);
 }
