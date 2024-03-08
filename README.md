@@ -13,5 +13,6 @@ Learnings and notes gathered from https://www.linkedin.com/learning/rust-essenti
 - [Generic types](./docs/generic_types.md)
 - [Traits](./docs/traits.md)
 - [Lifetimes](./docs/lifetimes.md)
+- [Enums](./docs/enums.md)
 
 
