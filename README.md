@@ -14,5 +14,6 @@ Learnings and notes gathered from https://www.linkedin.com/learning/rust-essenti
 - [Traits](./docs/traits.md)
 - [Lifetimes](./docs/lifetimes.md)
 - [Enums](./docs/enums.md)
+- [Error Handling](./docs/error_handling.md)
 
 

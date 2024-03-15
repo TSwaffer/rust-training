@@ -1,24 +1,31 @@
-enum Location {
-  Unknown,
-  Anonymous,
-  Known(f64, f64)
-}
-
-impl Location {
-  fn display(&self) -> () {
-    match self {
-      Location::Unknown => println!("Location is unknown"),
-      Location::Anonymous => println!("Location is anonymous"),
-      Location::Known(lat, long) => println!("Location is at lat: {}, long: {}", lat, long)
-    }
-  }
-}
+use std::{io, num::ParseIntError};
+use rand::prelude::*;
 
 fn main() {
-  let address = Location::Unknown;
-  address.display();
-  let address = Location::Anonymous;
-  address.display();
-  let address = Location::Known(28.608295, -80.604177);
-  address.display();
+  let secret_number = rand::thread_rng().gen_range(1..101);
+
+  println!("I'm thinking of a number between 1 and 100");
+  println!("Guess the number:");
+
+  loop {
+      let mut guess = String::new();
+      let _ = io::stdin().read_line(&mut guess);
+      let parsed_guess: Result<u32, ParseIntError> = guess.trim().parse();
+      let guess = match parsed_guess {
+        Ok(entry) => entry,
+        Err(error) => {
+          println!("Error occurred: {:?}", error);
+          continue;
+        }
+      };
+      
+      if guess > secret_number {
+        println!("\n{} is too high! Guess lower:", guess);
+      } else if guess < secret_number {
+        println!("\n{} is too low! Guess higher:", guess);
+      } else {
+        println!("\nYou got it! The secret number was {}", secret_number);
+        break;
+      }
+  }
 }
