@@ -15,5 +15,6 @@ Learnings and notes gathered from https://www.linkedin.com/learning/rust-essenti
 - [Lifetimes](./docs/lifetimes.md)
 - [Enums](./docs/enums.md)
 - [Error Handling](./docs/error_handling.md)
+- [Collections](./docs/collections.md)
 
 
